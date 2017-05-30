@@ -76,7 +76,9 @@ EXEMPT_L10N_URLS = [
     '^/oidc/authenticate/',
     '^/oidc/callback/',
     '^/api/v2/',
-    '^/admin/'
+    '^/admin/',
+    '^/ccid/login',
+    '^/ccid/logout',
 ]
 
 
@@ -249,6 +251,8 @@ MIDDLEWARE_CLASSES = (
     'mozillians.groups.middleware.OldGroupRedirectionMiddleware',
 
     'waffle.middleware.WaffleMiddleware',
+
+    'cas.middleware.CASMiddleware',
 )
 
 X_FRAME_OPTIONS = 'DENY'
@@ -284,7 +288,8 @@ SUPPORTED_NONLOCALES = [
 # Authentication settings
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'mozillians.common.authbackend.MozilliansAuthBackend',
+    #'mozillians.common.authbackend.MozilliansAuthBackend',
+    'cas.backends.CASBackend',
 )
 
 USERNAME_MAX_LENGTH = 30
@@ -318,6 +323,7 @@ INSTALLED_APPS = (
     'mozilla_django_oidc',
     'cities_light',
     'haystack',
+    'cas',
 
     'mozillians',
     'mozillians.users',
@@ -376,12 +382,9 @@ CACHES = {
 MAX_PHOTO_UPLOAD_SIZE = 8 * (1024 ** 2)
 
 AUTO_VOUCH_DOMAINS = (
-    'mozilla.com',
-    'mozilla.org',
-    'mozillafoundation.org',
-    'getpocket.com',
+    'creativecommons.org',
 )
-AUTO_VOUCH_REASON = 'An automatic vouch for being a Mozilla employee.'
+AUTO_VOUCH_REASON = 'An automatic vouch for being a Creative Commons employee.'
 
 # Django-CSP
 CSP_REPORT_ONLY = False
@@ -483,6 +486,8 @@ STRONGHOLD_EXCEPTIONS = ['^%s' % MEDIA_URL,
                          '^/api/',
                          '^/oidc/authenticate/',
                          '^/oidc/callback/',
+                         '^/ccid/login/',
+                         '^/ccid/logout/',
                          # Allow autocomplete urls for profile registration
                          '^/[\w-]+/skills-autocomplete/',
                          '^/[\w-]+/country-autocomplete/',
@@ -587,3 +592,12 @@ HAYSTACK_CONNECTIONS = {
         'INDEX_NAME': 'mozillians'
     }
 }
+
+# CAS
+
+CAS_LOGOUT_COMPLETELY = True
+CAS_PROVIDE_URL_TO_LOGOUT = True
+CAS_VERSION = '2'
+CAS_RESPONSE_CALLBACKS = (
+    'cc.ccid.callbackfunction',
+)

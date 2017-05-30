@@ -340,3 +340,6 @@ whitenoise==3.3.0 \
 django-haystack==2.6.0 \
     --hash=sha256:a5ff5f20954d22be57b4daa4b93bc4b809705fa57016dc6756080b1a9865c2d7 \
     --hash=sha256:277d82589491f71b2ba158a0afcf94e917e78cf8b84fbd06f4157116074b16d1
+django-cas-client==1.3.0 \
+    --hash=sha256:890536d712d3b3425e2c09e8fe07344fbcfb6e0832ae512b1a37224333d07d5f \
+    --hash=sha256:48add68bf5c7f94cd0c4a43dd8a954696438c7bc707a1f5d84e8c5b397478bc1

@@ -50,7 +50,7 @@ ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
 
-AUTHENTICATION_BACKENDS = ( 'django.contrib.auth.backends.ModelBackend', )
+# AUTHENTICATION_BACKENDS = ( 'django.contrib.auth.backends.ModelBackend', )
 
 MANAGERS = ADMINS
 
@@ -137,3 +137,6 @@ NORECAPTCHA_SECRET_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 #MIDDLEWARE_CLASSES = (('debug_toolbar.middleware.DebugToolbarMiddleware',) +
 #                      base.MIDDLEWARE_CLASSES)
 #INSTALLED_APPS = base.INSTALLED_APPS + ('debug_toolbar',)
+
+CAS_SERVER_URL = "https://login.creativecommons.org/"
+CAS_FORCE_SSL_SERVICE_URL = False

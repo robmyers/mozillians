@@ -43,6 +43,9 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'', include('mozillians.humans.urls', 'humans')),
+
+    url(r'^ccid/login/$', 'cas.views.login', name='login'),
+    url(r'^ccid/logout/$', 'cas.views.logout', name='logout'),
 )
 
 admin.site.site_header = 'Mozillians Administration'
